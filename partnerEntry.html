@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Tip Calculator: Hours Entry</title>
+</head>
+
+<script src="PartnerEntry.js" type="text/javascript"></script>
+
+<script>initPartnerList()</script>
+
+<form action="results.html">
+
+
+    <!--<label>Christmas Tips<input type="checkbox" name="xmasCheck" id="xmasCheck"
+            onchange="showHideXmas(this)"></label><br>-->
+
+    <label>Partner name:<input type="text" id="name"></label><br>
+    <label id="xmasEntry" hidden>Christmas hours:<input type="text" id="xmasHours" hidden><br></label>
+
+    <label for="hours" id="xmasLabel" hidden>Total Hours:</label>
+    <label for="hours" id="regLabel">Hours</label>
+    <input type="text" id="hours"><br>
+
+    <div id="totalHours"></div>
+
+    <input type="button" id="addBtn" value="Add Partner" onclick="logPartner()">
+    <input type="button" id="doneBtn" value="Done" onclick="calcFinal()">
+</form>
+
+<div id="message"></div>
+<div id="list"></div>
+
+<script>
+    var input = document.getElementById("hours");
+    input.addEventListener("keyup", function(event) {
+      if (event.keyCode === 13) {
+       event.preventDefault();
+       document.getElementById("addBtn").click();
+      }
+    });
+    </script>
+
+<script>
+
+    function showHideXmas(checkBox) {
+        if (checkBox.checked) {
+            document.getElementById("xmasEntry").hidden = false;
+            document.getElementById("xmasHours").hidden = false;
+            document.getElementById("xmasLabel").hidden = false;
+            document.getElementById("regLabel").hidden = true;
+        } else {
+            document.getElementById("xmasEntry").hidden = true;
+            document.getElementById("xmasHours").hidden = true;
+            document.getElementById("xmasLabel").hidden = true;
+            document.getElementById("regLabel").hidden = false;
+        }
+    }
+</script>
+
+</html>

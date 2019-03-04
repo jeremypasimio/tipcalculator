@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Tip Calculator: Money Entry</title>
+
+</head>
+
+<script src="MoneyEntry.js" type="text/javascript"></script>
+
+<body>
+    Welcome to the tip calculator.
+    <form action="partnerEntry.html" id="moneyEntry" name="moneyEntry">
+        <br hidden>
+        <label hidden>Christmas Tips<input type="checkbox" name="xmasCheck" id="xmasCheck"
+                onchange="showHideXmas(this)" hidden></label>
+        <br hidden>
+        <br>
+        <div id="xmas1" hidden>First enter the quantity (not value) of money collected on Christmas.
+            <br>
+            $1 Bill <input type="text" id="oneBillXmas"><br>
+            $5 Bill <input type="text" id="fiveBillXmas"><br>
+            $10 Bill <input type="text" id="tenBillXmas"><br>
+            $20 Bill <input type="text" id="twentyBillXmas"><br>
+            $50 Bill <input type="text" id="fiftyBillXmas"><br>
+            $100 Bill <input type="text" id="hundredBillXmas"><br>
+            Dollar Coin <input type="text" id="dollarCoinXmas"><br>
+            Penny Roll <input type="text" id="pennyRollXmas"><br>
+            Nickel Roll <input type="text" id="nickelRollXmas"><br>
+            Dime Roll <input type="text" id="dimeRollXmas"><br>
+            Quarter Roll <input type="text" id="quarterRollXmas">
+        </div>
+
+        <div id="reg">Please enter the quantity (not value) of all money collected.</div>
+
+        <div id="xmas2" hidden>
+            Next enter the quantity (not value) of <strong>all money collected (xmas +
+                regular)</strong>.
+        </div>
+
+        $1 Bill <input type="number" id="oneBill" min="0"><br>
+        $5 Bill <input type="number" id="fiveBill" min="0"><br>
+        $10 Bill <input type="number" id="tenBill" min="0"><br>
+        $20 Bill <input type="number" id="twentyBill" min="0"><br>
+        $50 Bill <input type="number" id="fiftyBill" min="0"><br>
+        $100 Bill <input type="number" id="hundredBill" min="0"><br>
+        Dollar Coin <input type="number" id="dollarCoin" min="0"><br>
+        Penny Roll <input type="number" id="pennyRoll" min="0"><br>
+        Nickel Roll <input type="number" id="nickelRoll" min="0"><br>
+        Dime Roll <input type="number" id="dimeRoll" min="0"><br>
+        Quarter Roll <input type="number" id="quarterRoll" min="0"><br><br>
+
+        <input type="button" id="calcBtn" value="Calculate" onclick="getValues()">
+        <input type="Submit" id="submitBtn" value="Submit" disabled>
+    </form>
+
+    <div id="message"></div>
+    <div id="results"></div>
+</body>
+
+<!--Simple Function to show or hide the fields for inputting Christmas Day tips.-->
+<script>
+    function showHideXmas(checkboxElem) {
+
+        if (checkboxElem.checked) {
+            document.getElementById("xmas1").hidden = false;
+            document.getElementById("xmas2").hidden = false;
+            document.getElementById("reg").style.visibility = "hidden";
+        } else {
+            document.getElementById("xmas1").hidden = true;
+            document.getElementById("xmas2").hidden = true;
+            document.getElementById("reg").style.visibility = "visible";
+            resetXmas();
+        }
+    }
+</script>
+
+</html>
