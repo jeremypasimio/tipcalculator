@@ -127,10 +127,12 @@ function loadTable() {
                 cell.innerHTML = "1x Dime"
                 tips.dimes -= 1;
                 currentPayout -= 5;
-            } else {
+            } else if (tips.nickels > 0) {
                 cell.innerHTML = "1x Nickel"
                 tips.nickels -= 1;
                 currentPayout -= 2;
+            } else {
+                cell.innerHTML = "-";
             }
         } else {
             cell.innerHTML = "-";
