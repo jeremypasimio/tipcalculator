@@ -18,11 +18,11 @@ function init() {
 
     document.getElementById('info').innerHTML = `Total Tips: ${tips.total}<br>Total Hours: ${totalHours}<br>Dollar per Hour: ${dph.toFixed(2)}<br>`
 
-    if(roundError <0){
+    if (roundError < 0) {
         document.getElementById('roundMsg').innerHTML = `Retrieve ${Math.abs(roundError)} dollar(s) from the tip jar to complete tip funds.`;
-    }else if(roundError >0){
+    } else if (roundError > 0) {
         document.getElementById('roundMsg').innerHTML = `Put ${Math.abs(roundError)} dollar(s) back into the tip jar for next week.`;
-    }else{
+    } else {
         document.getElementById('roundMsg').innerHTML = "You have the correct amount of money.";
     }
 }
@@ -92,22 +92,36 @@ function loadTable() {
                 tips.quarters -= 2;
                 currentPayout -= 20;
             } else if (i > doubleQuarter && i <= doubleRoll) {
-                if (tips.dimes > 0) {
-                    cell.innerHTML = "1x Quarter 1x Dime"
-                    tips.quarters -= 1;
-                    tips.dimes -= 1;
-                    currentPayout -= 15;
-                } else {
-                    cell.innerHTML = "1x Quarter 1x Nickel"
-                    tips.quarters -= 1;
-                    tips.nickels -= 1;
-                    currentPayout -= 12;
+                if (tips.quarters > 0) {
+                    if (tips.nickels > 0) {
+                        cell.innerHTML = "1x Quarter 1x Nickel"
+                        tips.quarters -= 1;
+                        tips.nickels -= 1;
+                        currentPayout -= 12;
+                    } else {
+                        cell.innerHTML = "1x Quarter 1x Dime"
+                        tips.quarters -= 1;
+                        tips.dimes -= 1;
+                        currentPayout -= 15;
+                    }
                 }
             }
         } else if (partnerList[i - 1].payout >= 30) {
-            cell.innerHTML = "1x Quarter"
-            tips.quarters -= 1;
-            currentPayout -= 10;
+            if (tips.quarters > 0) {
+                cell.innerHTML = "1x Quarter"
+                tips.quarters -= 1;
+                currentPayout -= 10;
+            } else if (tips.dimes > 0) {
+                cell.innerHTML = "1x Dime"
+                tips.dimes -= 1;
+                currentPayout -= 5;
+            } else if (tips.nickels > 0) {
+                cell.innerHTML = "1x Nickel"
+                tips.nickels -= 1;
+                currentPayout -= 2;
+            } else {
+                cell.innerHTML = "-";
+            }
         } else if (partnerList[i - 1].payout > 10 && partnerList[i - 1].payout < 30) {
             if (tips.dimes > 0) {
                 cell.innerHTML = "1x Dime"
