@@ -16,7 +16,7 @@ function init() {
     doubleRoll = totalRolls - over10;
     doubleQuarter = calcDoubleQuarter();
 
-    document.getElementById('info').innerHTML = `Total Tips: ${tips.total}<br>Total Hours: ${totalHours}<br>Dollar per Hour: ${dph.toFixed(2)}<br>`
+    document.getElementById('info').innerHTML = `Total Tips: $${tips.total}<br>Total Hours: ${totalHours.toFixed(2)}<br>Dollar per Hour: $${dph.toFixed(2)}<br>`
 
     if (roundError < 0) {
         document.getElementById('roundMsg').innerHTML = `Retrieve ${Math.abs(roundError)} dollar(s) from the tip jar to complete tip funds.`;

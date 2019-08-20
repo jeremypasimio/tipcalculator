@@ -7,10 +7,11 @@
 </head>
 
 <script src="MoneyEntry.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="style.css">
 
 <body>
     Welcome to the tip calculator.
-    <form action="partnerEntry.html" id="moneyEntry" name="moneyEntry">
+    <form action="disbursmentPage.html" id="moneyEntry" name="moneyEntry">
         <br hidden>
         <label hidden>Christmas Tips<input type="checkbox" name="xmasCheck" id="xmasCheck"
                 onchange="showHideXmas(this)" hidden></label>
@@ -36,19 +37,19 @@
         <div id="xmas2" hidden>
             Next enter the quantity (not value) of <strong>all money collected (xmas +
                 regular)</strong>.
-        </div>
+        </div><br>
 
-        $1 Bill <input type="tel" id="oneBill" min="0"><br>
-        $5 Bill <input type="tel" id="fiveBill" min="0"><br>
-        $10 Bill <input type="tel" id="tenBill" min="0"><br>
-        $20 Bill <input type="tel" id="twentyBill" min="0"><br>
-        $50 Bill <input type="tel" id="fiftyBill" min="0"><br>
-        $100 Bill <input type="tel" id="hundredBill" min="0"><br>
-        Dollar Coin <input type="tel" id="dollarCoin" min="0"><br>
-        Penny Roll <input type="tel" id="pennyRoll" min="0"><br>
-        Nickel Roll <input type="tel" id="nickelRoll" min="0"><br>
-        Dime Roll <input type="tel" id="dimeRoll" min="0"><br>
-        Quarter Roll <input type="tel" id="quarterRoll" min="0"><br><br>
+        <p class="cashEntryRow"><label class="cashEntry">$1 Bill</label> <input type="tel" id="oneBill" min="0"></p>
+        <p class="cashEntryRow"><label class="cashEntry">$5 Bill</label> <input type="tel" id="fiveBill" min="0"></p>
+        <p class="cashEntryRow"><label class="cashEntry">$10 Bill</label> <input type="tel" id="tenBill" min="0"></p>
+        <p class="cashEntryRow"><label class="cashEntry">$20 Bill</label> <input type="tel" id="twentyBill" min="0"></p>
+        <p class="cashEntryRow"><label class="cashEntry">$50 Bill </label><input type="tel" id="fiftyBill" min="0"></p>
+        <p class="cashEntryRow"><label class="cashEntry">$100 Bill </label><input type="tel" id="hundredBill" min="0"></p>
+        <p class="cashEntryRow"><label class="cashEntry">Dollar Coin </label><input type="tel" id="dollarCoin" min="0"></p>
+        <p class="cashEntryRow"><label class="cashEntry">Penny Roll </label><input type="tel" id="pennyRoll" min="0"></p>
+        <p class="cashEntryRow"><label class="cashEntry">Nickel Roll </label><input type="tel" id="nickelRoll" min="0"></p>
+        <p class="cashEntryRow"><label class="cashEntry">Dime Roll </label><input type="tel" id="dimeRoll" min="0"></p>
+        <p class="cashEntryRow"><label class="cashEntry">Quarter Roll </label><input type="tel" id="quarterRoll" min="0"></p><br>
 
         <input type="button" id="calcBtn" value="Calculate" onclick="getValues()">
         <input type="Submit" id="submitBtn" value="Submit" disabled>

@@ -1,3 +1,39 @@
+table{
+    table-layout: fixed;
+    width:750px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-collapse: collapse;
+}
+
+th{
+    border: 1px solid #000000;
+}
+
 th,td{
+    margin: 5px;
+    padding: 2px;
     border-bottom: 1px solid #000000;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+input[type=text]{
+    width:55px;
+}
+
+input[type=tel]{
+    width:75px;
+    display:table-cell;
+    margin-left: 5px;
+}
+
+.cashEntry{
+    display:table-cell;    
+}
+
+.cashEntryRow{
+    display: table-row;
 }

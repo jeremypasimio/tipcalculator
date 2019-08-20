@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Feature Test</title>
+</head>
+
+<script src="DisbursementPageCode.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<body>
+
+    <label>Total Money: <input type="text" id="totalMoneyField" disabled></label>
+    <label>Total Hours: <input type="text" id="totalHoursField" disabled></label>
+    <label>Dollar per Hour: <input type="text" id="dphField" disabled></label>
+
+    <table id="testTable">
+        <tr>
+            <th>Name</th>
+            <th>Hours</th>
+            <th>Total Payout</th>
+            <th>$100</th>
+            <th>$50</th>
+            <th>$20</th>
+            <th>$10</th>
+            <th>$5</th>
+            <th>$1</th>
+            <th>$.25</th>
+            <th>$.10</th>
+            <th>$.05</th>
+        </tr>
+
+
+
+    </table>
+
+    <input type="button" id="addRow" value="Add Row" onclick=addRow()>
+    <input type="button" id="sumHours" value="Calculate Payout" onclick=calcPayout()>
+    <div id="roundMsg"></div>
+
+    <script>populateTable()</script>
+
+</body>
+
+</html>
