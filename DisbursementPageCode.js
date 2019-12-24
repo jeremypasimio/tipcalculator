@@ -1,6 +1,6 @@
 "use strict"
 
-const partners = ['Bethany', 'Joey', 'Cheryl', 'Tasha', 'Jenny','Diego','Julia','Tabby','Elliot', 'Brian', 'Valerie','Delaney','Avi', 'Jeremy', 'Mekhi', 'Codi', 'Reese','Autumn', 'Bella', 'Camden', 'Grace', 'Britney'];
+const partners = ['Bethany', 'Joey', 'Cheryl','Diego','Julia','Tabby','Elliot', 'Brian', 'Valerie','Delaney','Avi', 'Jeremy', 'Mekhi', 'Codi', 'Reese','Autumn', 'Bella', 'Camden', 'Grace', 'Britney'];
 const tips = JSON.parse(localStorage.tipTotal);
 const tipTotal = tips.total;
 var payoutList = [];
