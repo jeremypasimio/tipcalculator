@@ -1,5 +1,6 @@
 "use strict"
 
+
 const partners = ['Bethany', 'Joey', 'Cheryl','Diego','Julia','Tabby','Elliot', 'Valerie','Delaney','Avi', 'Jeremy', 'Mekhi', 'Codi', 'Reese', 'Megan','Bella', 'Camden', 'Grace'];
 const tips = JSON.parse(localStorage.tipTotal);
 const tipTotal = tips.total;
@@ -27,22 +28,6 @@ function addRow(index) {
     var cell = row.insertCell(2);
     cell.innerHTML = '-';
     var cell = row.insertCell(3);
-    cell.innerHTML = '-';
-    var cell = row.insertCell(4);
-    cell.innerHTML = '-';
-    var cell = row.insertCell(5);
-    cell.innerHTML = '-';
-    var cell = row.insertCell(6);
-    cell.innerHTML = '-';
-    var cell = row.insertCell(7);
-    cell.innerHTML = '-';
-    var cell = row.insertCell(8);
-    cell.innerHTML = '-';
-    var cell = row.insertCell(9);
-    cell.innerHTML = '-';
-    var cell = row.insertCell(10);
-    cell.innerHTML = '-';
-    var cell = row.insertCell(11);
     cell.innerHTML = '-';
 }
 
@@ -85,7 +70,7 @@ function disburse(payList) {
     var table = document.getElementById("testTable");
     var partnerOver5 = 0;
     var partnerOver10 = 0; //only partners with a payout over $10 get coin rolls
-    var partnerOver20 = 0; //only partners with a payout over $20 get quarter rolls
+    var partnerOver20 = 0;
 
     for (var i = 0; i < payList.length; i++) {
         if (payList[i].payout > 10) {
@@ -124,10 +109,6 @@ function disburse(payList) {
 
     var baseCoin = Math.floor(numCoins / partnerOver10);
     var basePlusOne = numCoins % partnerOver10;
-    console.log("base+1 " + basePlusOne);
-
-    var baseQtr = Math.floor(quarters / partnerOver20);
-    var qtrPlusOne = quarters % partnerOver20;
 
     var base20s = Math.floor(twenties / partnerOver20);
     var base20PlusOne = twenties % partnerOver20;
@@ -140,13 +121,15 @@ function disburse(payList) {
 
     for (var i = 0; i < payList.length; i++) {
         var currentPayout = payList[i].payout;
+        const initPayout = currentPayout;
+        var outStr = '';
 
         //hundreds
         if (hundreds > 0) {
             if (currentPayout - 100 >= 0) {
                 currentPayout -= 100;
                 hundreds -= 1;
-                table.rows[payList[i].index].cells[3].innerHTML = 1;
+                outStr += `1x100s,<br>`;
             }
         }
 
@@ -155,7 +138,7 @@ function disburse(payList) {
             if (currentPayout - 50 >= 0) {
                 currentPayout -= 50;
                 fifties -= 1;
-                table.rows[payList[i].index].cells[4].innerHTML = 1;
+                outStr += `1x50s,<br>`;
             }
         }
 
@@ -168,16 +151,16 @@ function disburse(payList) {
                     if (i <= base20PlusOne && base20PlusOne > 0 && currentPayout - 20 >= 0) {
                         currentPayout -= 20;
                         twenties -= 1;
-                        table.rows[payList[i].index].cells[5].innerHTML = `${base20s + 1}`;
+                        outStr += `${base20s + 1}x20s,<br>`;
                     } else {
-                        table.rows[payList[i].index].cells[5].innerHTML = `${base20s}`;
+                        outStr += `${base20s}x20s,<br>`;
                     }
 
                 } else {
                     var x = Math.floor(currentPayout / 20);
                     currentPayout -= 20 * x;
                     twenties -= x;
-                    table.rows[payList[i].index].cells[5].innerHTML = x;
+                    outStr += `${x}x20s,<br>`;
                 }
             }
         }
@@ -191,16 +174,16 @@ function disburse(payList) {
                     if (i <= base10PlusOne && base10PlusOne > 0 && currentPayout - 10 >= 0) {
                         currentPayout -= 10;
                         tens -= 1;
-                        table.rows[payList[i].index].cells[6].innerHTML = `${base10s + 1}`;
+                        outStr += `${base10s + 1}x10s,<br>`;
                     } else {
-                        table.rows[payList[i].index].cells[6].innerHTML = `${base10s}`;
+                        outStr += `${base10s}x10s,<br>`;
                     }
 
                 } else {
                     var x = Math.floor(currentPayout / 10);
                     currentPayout -= 10 * x;
                     tens -= x;
-                    table.rows[payList[i].index].cells[6].innerHTML = x;
+                    outStr += `${x}x10s,<br>`;
                 }
             }
         }
@@ -214,99 +197,82 @@ function disburse(payList) {
                     if (i <= base5PlusOne && base5PlusOne > 0 && currentPayout - 5 >= 0) {
                         currentPayout -= 5;
                         fives -= 1;
-                        table.rows[payList[i].index].cells[7].innerHTML = `${base5s + 1}`;
+                        outStr += `${base5s + 1}x5s,<br>`;
                     } else {
-                        table.rows[payList[i].index].cells[7].innerHTML = `${base5s}`;
+                        outStr += `${base5s}x5s,<br>`;
                     }
 
                 } else {
                     var x = Math.floor(currentPayout / 5);
                     currentPayout -= 5 * x;
                     fives -= x;
-                    table.rows[payList[i].index].cells[7].innerHTML = x;
+                    outStr += `${x}x5s,<br>`;
                 }
             }
         }
 
         //Coins
         if (i < partnerOver10) {
-            if (i < partnerOver20 && quarters > 0) {
-                if (currentPayout - baseQtr * 10 >= 0) {
-                    currentPayout -= baseQtr * 10;
-                    quarters -= baseQtr;
-                    if (i < qtrPlusOne && currentPayout - 10 >= 0 && quarters > 0) {
-                        currentPayout -= 10;
-                        quarters -= 1;
-                        if (i < basePlusOne) {
-                            if (currentPayout - 5 >= 0 && dimes > 0) {
-                                currentPayout -= 5;
-                                dimes -= 1;
-                                table.rows[payList[i].index].cells[9].innerHTML = `${baseQtr + 1}`;
-                                table.rows[payList[i].index].cells[10].innerHTML = `1`;
-                            } else if (currentPayout - 2 >= 0 && nickels > 0) {
-                                currentPayout -= 2;
-                                nickels -= 1;
-                                table.rows[payList[i].index].cells[9].innerHTML = `${baseQtr + 1}`;
-                                table.rows[payList[i].index].cells[11].innerHTML = `1`;
-                            }
-                        } else {
-                            table.rows[payList[i].index].cells[9].innerHTML = `${baseQtr + 1}`;
-                        }
-                    } else if (i < basePlusOne) {
-                        if (currentPayout - 5 >= 0 && dimes > 0) {
-                            currentPayout -= 5;
-                            dimes -= 1;
-                            table.rows[payList[i].index].cells[9].innerHTML = `${baseQtr}`;
-                            table.rows[payList[i].index].cells[10].innerHTML = `1`;
-                        } else if (currentPayout - 2 >= 0 && nickels > 0) {
-                            currentPayout -= 2;
-                            nickels -= 1;
-                            table.rows[payList[i].index].cells[9].innerHTML = `${baseQtr}`;
-                            table.rows[payList[i].index].cells[11].innerHTML = `1`;
-                        }
-                    } else {
-                        table.rows[payList[i].index].cells[9].innerHTML = `${baseQtr}`;
-                    }
-                }
-            } else {
-                if (currentPayout - baseCoin * 5 >= 0 && dimes >= baseCoin) {
-                    currentPayout -= baseCoin * 5;
-                    dimes -= baseCoin;
-                    if (i < basePlusOne && currentPayout - 5 >= 0 && dimes > 0) {
-                        currentPayout -= 5;
-                        dimes -= 5;
-                        table.rows[payList[i].index].cells[10].innerHTML = `${baseCoin + 1}`;
-                    } else if (i <= basePlusOne && currentPayout - 2 >= 0 && nickels > 0) {
-                        currentPayout -= 2;
-                        nickels -= 1;
-                        table.rows[payList[i].index].cells[10].innerHTML = `${baseCoin}`;
-                        table.rows[payList[i].index].cells[11].innerHTML = `1`;
-                    } else {
-                        table.rows[payList[i].index].cells[10].innerHTML = `${baseCoin}`;
-                    }
+            var q = 0,
+                d = 0,
+                n = 0;
 
-                } else if (currentPayout - baseCoin * 2 >= 0 && nickels >= baseCoin) {
-                    currentPayout -= baseCoin * 2;
-                    nickels -= baseCoin;
-                    if (i < basePlusOne && currentPayout - 5 >= 0 && dimes > 0) {
-                        currentPayout -= 5;
-                        dimes -= 5;
-                        table.rows[payList[i].index].cells[11].innerHTML = `${baseCoin}`;
-                        table.rows[payList[i].index].cells[10].innerHTML = `1`;
-                    } else if (i <= basePlusOne && currentPayout - 2 >= 0 && nickels > 0) {
-                        currentPayout -= 2;
-                        nickels -= 1;
-                        table.rows[payList[i].index].cells[11].innerHTML = `${baseCoin + 1}`;
-                    } else {
-                        table.rows[payList[i].index].cells[11].innerHTML = `${baseCoin}`;
-                    }
+            for (var j = 0; j < baseCoin; j++) {
+                if (initPayout > 20 && quarters > 0 && currentPayout - 10 > 0) {
+                    currentPayout -= 10;
+                    quarters -= 1;
+                    q += 1;
+                } else if (dimes > 0 && currentPayout - 5 > 0) {
+                    currentPayout -= 5;
+                    dimes -= 1;
+                    d += 1;
+                } else if (nickels > 0 && currentPayout - 2 > 0) {
+                    currentPayout -= 2;
+                    nickels -= 1;
+                    n += 1;
                 }
             }
+
+            if (i < basePlusOne) {
+                if (quarters > 0 && currentPayout - 10 > 0) {
+                    currentPayout -= 10;
+                    quarters -= 1;
+                    q += 1;
+                } else if (dimes > 0 && currentPayout - 5 > 0) {
+                    currentPayout -= 5;
+                    dimes -= 1;
+                    d += 1;
+                } else if (nickels > 0 && currentPayout - 2 > 0) {
+                    currentPayout -= 2;
+                    nickels -= 1;
+                    n += 1;
+                }
+            }
+
+            if (q > 0) {
+                outStr += `${q}xQuarter Rolls,<br>`;
+            }
+
+            if (d > 0) {
+                outStr += `${d}xDime Rolls,<br>`
+            }
+
+            if (n > 0) {
+                outStr += `${n}xNickel Rolls,<br>`
+            }
+
+
         }//end coins
 
         //Ones
-        table.rows[payList[i].index].cells[8].innerHTML = `${currentPayout}`;
+        outStr += `${currentPayout}x1s`;
 
+        if (initPayout === 0) {
+            outStr = '-';
+            table.rows[payList[i].index].cells[3].innerHTML = outStr;
+        } else {
+            table.rows[payList[i].index].cells[3].innerHTML = outStr;
+        }
     }//end for
 }
 

@@ -6,8 +6,6 @@ var ones = 0,
     twenties = 0,
     fifties = 0,
     hundreds = 0,
-    dollarCoin = 0,
-    pennies = 0,
     nickels = 0,
     dimes = 0,
     quarters = 0;
@@ -18,11 +16,9 @@ var xmas1 = 0,
     xmas20 = 0,
     xmas50 = 0,
     xmas100 = 0,
-    xmasP = 0,
     xmasN = 0,
     xmasD = 0,
-    xmasQ = 0,
-    xmasDC = 0;
+    xmasQ = 0;
 
 var regTotal = 0,
     xmasTotal = 0,
@@ -60,16 +56,6 @@ function getValues() {
     x = parseInt(document.getElementById("hundredBill").value);
     if (!isNaN(x)) {
         hundreds = parseInt(x);
-    }
-
-    x = parseInt(document.getElementById("dollarCoin").value);
-    if (!isNaN(x)) {
-        dollarCoin = parseInt(x);
-    }
-
-    x = parseInt(document.getElementById("pennyRoll").value);
-    if (!isNaN(x)) {
-        pennies = parseInt(x);
     }
 
     x = parseInt(document.getElementById("nickelRoll").value);
@@ -128,16 +114,6 @@ function getXmasValues() {
         xmas100 = parseInt(x);
     }
 
-    x = parseInt(document.getElementById("dollarCoinXmas").value);
-    if (!isNaN(x)) {
-        xmasDC = parseInt(x);
-    }
-
-    x = parseInt(document.getElementById("pennyRollXmas").value);
-    if (!isNaN(x)) {
-        xmasP = parseInt(x);
-    }
-
     x = parseInt(document.getElementById("nickelRollXmas").value);
     if (!isNaN(x)) {
         xmasN = parseInt(x);
@@ -164,11 +140,9 @@ function resetXmas() {
     xmas20 = 0;
     xmas50 = 0;
     xmas100 = 0;
-    xmasP = 0;
     xmasN = 0;
     xmasD = 0;
     xmasQ = 0;
-    xmasDC = 0;
 
     document.getElementById("oneBillXmas").value = "";
     document.getElementById("fiveBillXmas").value = "";
@@ -176,8 +150,6 @@ function resetXmas() {
     document.getElementById("twentyBillXmas").value = "";
     document.getElementById("fiftyBillXmas").value = "";
     document.getElementById("hundredBillXmas").value = "";
-    document.getElementById("dollarCoinXmas").value = "";
-    document.getElementById("pennyRollXmas").value = "";
     document.getElementById("nickelRollXmas").value = "";
     document.getElementById("dimeRollXmas").value = "";
     document.getElementById("quarterRollXmas").value = "";
@@ -193,8 +165,6 @@ function calcTotals() {
         (twenties * 20) +
         (fifties * 50) +
         (hundreds * 100) +
-        dollarCoin +
-        (pennies * .5) +
         (nickels * 2) +
         (dimes * 5) +
         (quarters * 10);
@@ -206,8 +176,6 @@ function calcTotals() {
             (xmas20 * 20) +
             (xmas50 * 50) +
             (xmas100 * 100) +
-            xmasDC +
-            (xmasP * .5) +
             (xmasN * 2) +
             (xmasD * 5) +
             (xmasQ * 10);
@@ -218,8 +186,6 @@ function calcTotals() {
         twenties += xmas20;
         fifties += xmas50;
         hundreds += xmas100;
-        dollarCoin += xmasDC;
-        pennies += xmasP;
         nickels += xmasN;
         dimes += xmasD;
         quarters += xmasQ;
@@ -237,12 +203,6 @@ function calcTotals() {
             "Whole dollar value needed to continue.  Put extra penny rolls back into tip fund for next week.  Adjust entry and recalculate.";
         document.getElementById("calcBtn").value = "Recalculate";
         document.getElementById("submitBtn").disabled = true;
-    } else if (pennies !== 0) {
-        document.getElementById("message").innerHTML =
-            "It is suggested (though not required) to sell any penny rolls back to the store funds for easier tip disbursement.  " +
-            "Adjust entry and recalculate or Submit entry.";
-        document.getElementById("calcBtn").value = "Recalculate";
-        document.getElementById("submitBtn").disabled = false;
     } else if (total === 0) {
         document.getElementById("message").innerHTML =
             "Please enter tip funds received.";
@@ -275,8 +235,6 @@ function storeTotals() {
             "twenties": twenties,
             "fifties": fifties,
             "hundreds": hundreds,
-            "dollarCoin": dollarCoin,
-            "pennies": pennies,
             "nickels": nickels,
             "dimes": dimes,
             "quarters": quarters
