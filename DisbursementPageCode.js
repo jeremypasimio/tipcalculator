@@ -149,7 +149,7 @@ function disburse(payList) {
                 if (currentPayout - (20 * base20s) >= 0) {
                     currentPayout -= (20 * base20s);
                     twenties -= base20s;
-                    if (i <= base20PlusOne && base20PlusOne > 0 && currentPayout - 20 >= 0) {
+                    if (i < base20PlusOne && base20PlusOne > 0 && currentPayout - 20 >= 0) {
                         currentPayout -= 20;
                         twenties -= 1;
                         outStr += `${base20s + 1}x20s,<br>`;
@@ -172,7 +172,7 @@ function disburse(payList) {
                 if (currentPayout - (10 * base10s) >= 0) {
                     currentPayout -= (10 * base10s);
                     tens -= base10s;
-                    if (i <= base10PlusOne && base10PlusOne > 0 && currentPayout - 10 >= 0) {
+                    if (i < base10PlusOne && base10PlusOne > 0 && currentPayout - 10 >= 0) {
                         currentPayout -= 10;
                         tens -= 1;
                         outStr += `${base10s + 1}x10s,<br>`;
@@ -195,7 +195,7 @@ function disburse(payList) {
                 if (currentPayout - (5 * base5s) >= 0) {
                     currentPayout -= (5 * base5s);
                     fives -= base5s;
-                    if (i <= base5PlusOne && base5PlusOne > 0 && currentPayout - 5 >= 0) {
+                    if (i < base5PlusOne && base5PlusOne > 0 && currentPayout - 5 >= 0) {
                         currentPayout -= 5;
                         fives -= 1;
                         outStr += `${base5s + 1}x5s,<br>`;
