@@ -1,8 +1,8 @@
 "use strict"
 
-const partners = ['Lani','Julia','Judy','Jenessa','Janessa',
-                  'Emme','Josh','Gracey','Kelly','Taryn','Thomas',
-                  'Sammie','McKaylee','Jeremy','Pepper','Candice',
+const partners = ['Lani','Julia','Judy',
+                  'Emme','Josh','Gracey','Kelly','Moe','Taryn','Thomas',
+                  'Sammie','Victor','Jeremy','Pepper','Candice',
                   'Jordan','Keigin','Kylar','Amie'];
 const tips = JSON.parse(localStorage.tipTotal);
 const tipTotal = tips.total;
