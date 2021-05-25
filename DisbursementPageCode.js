@@ -2,7 +2,8 @@
 
 const partners = ['Jill','Lani','Elizabeth','Julia','Judy',
                   'Emme','Gracey','Moe','Taryn','Thomas',
-                  'Sammie','Victor','Jeremy','Pepper','Candice','Keigin','Bry'];
+                  'Sammie','Shayna','Victor','Jeremy','Pepper',
+                  'Cort','Bry'];
 const tips = JSON.parse(localStorage.tipTotal);
 const tipTotal = tips.total;
 var payoutList = [];
